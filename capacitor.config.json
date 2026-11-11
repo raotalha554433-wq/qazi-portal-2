@@ -1,0 +1,7 @@
+{
+  "appId": "com.qaziwaseem.portal2",
+  "appName": "قاضی وسیم پورٹل 2",
+  "webDir": "www",
+  "backgroundColor": "#04180e",
+  "android": { "allowMixedContent": false }
+}
