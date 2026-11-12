@@ -1,0 +1,32 @@
+name: Build APK
+on:
+  push:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - uses: actions/setup-java@v4
+        with: { distribution: temurin, java-version: 17 }
+      - run: npm install
+      - name: Prepare web files
+        run: |
+          mkdir -p www/vendor/fa www/vendor/fonts assets
+          cp index.html www/index.html
+          cp fonts.css www/vendor/fonts/fonts.css
+          cp icon.png assets/icon.png
+          cp -r node_modules/@fortawesome/fontawesome-free/css node_modules/@fortawesome/fontawesome-free/webfonts www/vendor/fa/
+          for w in 400 500 600 700; do cp node_modules/@fontsource/noto-nastaliq-urdu/files/noto-nastaliq-urdu-{arabic,latin}-$w-normal.woff2 www/vendor/fonts/; done
+      - run: npx cap add android
+      - run: npx capacitor-assets generate --android
+      - run: npx cap sync android
+      - name: Build APK
+        working-directory: android
+        run: chmod +x gradlew && ./gradlew assembleDebug
+      - uses: actions/upload-artifact@v4
+        with:
+          name: QaziWaseemPortal-APK
+          path: android/app/build/outputs/apk/debug/app-debug.apk

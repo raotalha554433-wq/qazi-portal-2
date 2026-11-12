@@ -2029,7 +2029,7 @@ ov.innerHTML='<div class="lc-card" role="dialog" aria-modal="true"><div class="l
 '<div class="lc-sec">Rates · ریٹ</div><div class="lc-g g3">'+fld('lcR','DC Rate (Rs / <span id="lcU"></span>)','ڈی سی ریٹ')+fld('lcSR','Structure Rate (Rs/sq ft)','تعمیر ریٹ')+fld('lcC','Covered Area (sq ft)','کورڈ ایریا')+'</div>'+
 '<div class="lc-sec">Share · حصہ</div><div class="lc-g g2">'+fld('lcN','Numerator','حصہ','1')+'<div style="padding-bottom:9px;font-weight:800">/</div>'+fld('lcD','Denominator','کل','1')+'</div>'+
 '<div class="lc-w" id="lcW"></div><div class="lc-res"><div><span>Total Area · کل رقبہ</span><b id="rA"></b></div><div><span>Area in record unit</span><b id="rU"></b></div><div><span>Land Value · زمین</span><b id="rL"></b></div><div><span>Structure Value · تعمیر</span><b id="rS"></b></div><div class="tot"><span>Total Value · کل مالیت</span><b id="rT"></b></div><div class="lc-wd" id="rW"></div></div></div>'+
-'<div class="lc-ft"><button id="lcCp">📋 Copy</button><button id="lcP">🖨️ Print</button><button id="lcRs">↺ Reset</button></div></div>';
+'<div class="lc-ft"><button id="lcIn">🧮 Go to Inteqal Calculator · انتقال کیلکولیٹر</button><button id="lcCp">📋 Copy</button><button id="lcP">🖨️ Print</button><button id="lcRs">↺ Reset</button></div></div>';
 document.body.appendChild(ov);
 function f1(id){var v=$(id).value;return v===''?1:num(v)}
 function calc(){
@@ -2055,6 +2055,7 @@ ov.addEventListener('input',calc);
 ov.addEventListener('click',function(e){if(e.target===ov)close()});
 $('lcX').onclick=close;$('lcP').onclick=function(){window.print()};
 $('lcRs').onclick=function(){open(cur)};
+$('lcIn').onclick=function(){calc();var t=Math.round(cur.out.t),b=$('lcIn');if(!t){b.textContent='⚠ پہلے رقبہ لکھیں · Enter area first';setTimeout(function(){b.textContent='🧮 Go to Inteqal Calculator · انتقال کیلکولیٹر'},1600);return}close();try{parent.postMessage({inteqalAmt:t},'*')}catch(x){}};
 $('lcCp').onclick=function(){calc();var o=cur.out,t=cur.title+'\n'+cur.rows.filter(function(r){return r[1]&&r[1]!=='-'}).map(function(r){return r[0]+': '+r[1]}).join('\n')+'\nDC Rate: Rs. '+fm(num($('lcR').value))+' / '+cur.unit+'\nArea: '+$('rA').textContent+'\nLand Value: Rs. '+fm(o.land)+'\nStructure Value: Rs. '+fm(o.st)+'\nTotal Value: Rs. '+fm(o.t)+'\n'+words(o.t);
  var b=$('lcCp');function ok(){b.textContent='✔ Copied';setTimeout(function(){b.textContent='📋 Copy'},1400)}
  try{navigator.clipboard.writeText(t).then(ok,fb)}catch(x){fb()}
@@ -3442,7 +3443,7 @@ ov.innerHTML='<div class="lc-card" role="dialog" aria-modal="true"><div class="l
 '<div class="lc-sec">Rates · ریٹ</div><div class="lc-g g3">'+fld('lcR','DC Rate (Rs / <span id="lcU"></span>)','ڈی سی ریٹ')+fld('lcSR','Structure Rate (Rs/sq ft)','تعمیر ریٹ')+fld('lcC','Covered Area (sq ft)','کورڈ ایریا')+'</div>'+
 '<div class="lc-sec">Share · حصہ</div><div class="lc-g g2">'+fld('lcN','Numerator','حصہ','1')+'<div style="padding-bottom:9px;font-weight:800">/</div>'+fld('lcD','Denominator','کل','1')+'</div>'+
 '<div class="lc-w" id="lcW"></div><div class="lc-res"><div><span>Total Area · کل رقبہ</span><b id="rA"></b></div><div><span>Area in record unit</span><b id="rU"></b></div><div><span>Land Value · زمین</span><b id="rL"></b></div><div><span>Structure Value · تعمیر</span><b id="rS"></b></div><div class="tot"><span>Total Value · کل مالیت</span><b id="rT"></b></div><div class="lc-wd" id="rW"></div></div></div>'+
-'<div class="lc-ft"><button id="lcCp">📋 Copy</button><button id="lcP">🖨️ Print</button><button id="lcRs">↺ Reset</button></div></div>';
+'<div class="lc-ft"><button id="lcIn">🧮 Go to Inteqal Calculator · انتقال کیلکولیٹر</button><button id="lcCp">📋 Copy</button><button id="lcP">🖨️ Print</button><button id="lcRs">↺ Reset</button></div></div>';
 document.body.appendChild(ov);
 function f1(id){var v=$(id).value;return v===''?1:num(v)}
 function calc(){
@@ -3468,6 +3469,7 @@ ov.addEventListener('input',calc);
 ov.addEventListener('click',function(e){if(e.target===ov)close()});
 $('lcX').onclick=close;$('lcP').onclick=function(){window.print()};
 $('lcRs').onclick=function(){open(cur)};
+$('lcIn').onclick=function(){calc();var t=Math.round(cur.out.t),b=$('lcIn');if(!t){b.textContent='⚠ پہلے رقبہ لکھیں · Enter area first';setTimeout(function(){b.textContent='🧮 Go to Inteqal Calculator · انتقال کیلکولیٹر'},1600);return}close();try{parent.postMessage({inteqalAmt:t},'*')}catch(x){}};
 $('lcCp').onclick=function(){calc();var o=cur.out,t=cur.title+'\n'+cur.rows.filter(function(r){return r[1]&&r[1]!=='-'}).map(function(r){return r[0]+': '+r[1]}).join('\n')+'\nDC Rate: Rs. '+fm(num($('lcR').value))+' / '+cur.unit+'\nArea: '+$('rA').textContent+'\nLand Value: Rs. '+fm(o.land)+'\nStructure Value: Rs. '+fm(o.st)+'\nTotal Value: Rs. '+fm(o.t)+'\n'+words(o.t);
  var b=$('lcCp');function ok(){b.textContent='✔ Copied';setTimeout(function(){b.textContent='📋 Copy'},1400)}
  try{navigator.clipboard.writeText(t).then(ok,fb)}catch(x){fb()}
@@ -3481,81 +3483,192 @@ if(n)n.textContent=h+' — '+n.textContent;else{var tb=document.querySelector('.
 })();<\/script></body>
 </html></script>
 
-<script type="text/plain" id="pg-inteqal"><!DOCTYPE html><html data-pg="inteqal" lang="ur"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Inteqal Calculator</title>
+<script type="text/plain" id="pg-inteqal"><!DOCTYPE html><html data-pg="inteqal" lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Inteqal Calculator</title>
 <style>
-:root{--a:#35b8ef;--b:#24508d}
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html{background:#04180e}
-body{margin:0;min-height:100vh;font-family:'Noto Nastaliq Urdu','Jameel Noori Nastaleeq',Arial,sans-serif;color:#fff;
- background:radial-gradient(120% 70% at 85% -10%,rgba(53,184,239,.28),transparent 60%),radial-gradient(90% 60% at 0% 100%,rgba(45,158,90,.3),transparent 60%),#04180e;
- padding:calc(env(safe-area-inset-top,0px) + 8px) 10px 28px}
-.wrap{max-width:560px;margin:0 auto}
-.glass{background:linear-gradient(145deg,rgba(255,255,255,.12),rgba(255,255,255,.04)),rgba(5,30,18,.62);border:1px solid rgba(255,255,255,.2);border-radius:20px;box-shadow:0 14px 32px -14px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.3)}
-.hero{padding:22px 16px 20px;text-align:center;background:linear-gradient(135deg,rgba(53,184,239,.35),rgba(36,80,141,.55)),rgba(5,30,18,.6)}
-.hero h1{margin:0 0 6px;font-size:22px;line-height:2.1;font-weight:700}
-.hero p{margin:0;font-size:15px;line-height:2;color:#d6ecff}
-.card{padding:16px 14px;margin-top:14px}
-label{display:block;font-size:14px;color:#cfe3d8;margin-bottom:7px;font-family:Arial,sans-serif}
-input{width:100%;height:52px;border:1px solid rgba(255,255,255,.25);border-radius:14px;background:rgba(255,255,255,.08);padding:0 14px;font-size:19px;color:#fff;outline:none;font-family:Arial,sans-serif;direction:ltr}
-input:focus{border-color:#35b8ef;box-shadow:0 0 0 3px rgba(53,184,239,.3)}
-h2{margin:0 0 12px;padding-bottom:8px;font-size:15px;letter-spacing:.5px;font-family:Arial,sans-serif;border-bottom:2px solid #35b8ef;color:#7fd4ff;display:flex;justify-content:space-between;align-items:center;gap:8px}
-h2 small{font-family:'Noto Nastaliq Urdu',Arial,sans-serif;font-size:14px;letter-spacing:0;color:#cfe3d8;font-weight:400}
-.seller h2{border-color:#bf5af2;color:#d9a6ff}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-h3{margin:0 0 6px;font-size:14px;color:#9fc4b0;font-family:Arial,sans-serif;letter-spacing:.4px}
-.row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);font-size:15px;font-family:Arial,sans-serif;direction:ltr}
-.row:last-child{border-bottom:0}
-.row span{color:#b9d3c4}
-.row strong{font-weight:600;color:#fff;white-space:nowrap}
-.gt{margin-top:14px;padding:20px 12px;text-align:center;border-radius:20px;background:linear-gradient(135deg,#35b8ef,#24508d);box-shadow:0 12px 26px -10px rgba(53,184,239,.7),inset 0 1px 0 rgba(255,255,255,.4)}
-.gt .l{font-size:13px;letter-spacing:2px;font-family:Arial,sans-serif;color:#e4f5ff}
-.gt .v{margin-top:6px;font-size:34px;font-weight:700;font-family:Arial,sans-serif;direction:ltr;word-break:break-all}
-.note{margin:14px 4px 0;font-size:12px;line-height:1.7;color:#9fc4b0;font-family:Arial,sans-serif}
-</style></head><body><div class="wrap">
-<section class="glass hero"><h1 dir="rtl">رجسٹری کی فیس معلوم کرنے کا<br>آسان کیلکولیٹر</h1><p dir="rtl">صرف چند کلک پر اپنی رجسٹری کا خرچ معلوم کریں</p></section>
-<section class="glass card"><label for="amount">Property Rate / Amount (PKR)</label><input id="amount" type="number" min="0" step="any" value="20000" inputmode="decimal"></section>
-<section class="glass card"><h2>BUYER DETAILS <small>خریدار</small></h2><div class="grid">
-<div><label for="buyerFiler">Filer Count</label><input id="buyerFiler" type="number" min="0" step="1" value="0" inputmode="numeric"></div>
-<div><label for="buyerNon">Non-Filer Count</label><input id="buyerNon" type="number" min="0" step="1" value="0" inputmode="numeric"></div></div></section>
-<section class="glass card seller"><h2>SELLER DETAILS <small>فروخت کنندہ</small></h2><div class="grid">
-<div><label for="sellerFiler">Filer Count</label><input id="sellerFiler" type="number" min="0" step="1" value="0" inputmode="numeric"></div>
-<div><label for="sellerNon">Non-Filer Count</label><input id="sellerNon" type="number" min="0" step="1" value="0" inputmode="numeric"></div></div></section>
-<section class="glass card"><h3>BUYER ADVANCE TAX</h3>
-<div class="row"><span>Filer Share (1.3%)</span><strong id="buyerFilerTax">Rs. 0</strong></div>
-<div class="row"><span>Non-Filer Share (10.5%)</span><strong id="buyerNonTax">Rs. 0</strong></div></section>
-<section class="glass card"><h3>SELLER GAIN TAX</h3>
-<div class="row"><span>Filer Share (2.8%)</span><strong id="sellerFilerTax">Rs. 0</strong></div>
-<div class="row"><span>Non-Filer Share (11.5%)</span><strong id="sellerNonTax">Rs. 0</strong></div></section>
-<section class="glass card"><h3>FIXED DUTIES &amp; GOVT CHARGES</h3>
-<div class="row"><span>Stamp Duty (1%)</span><strong id="stamp">Rs. 200</strong></div>
-<div class="row"><span>TMA Fee (1%)</span><strong id="tma">Rs. 200</strong></div>
-<div class="row"><span>PLRA Charges</span><strong id="plra">Rs. 3,600</strong></div>
-<div class="row"><span>Miscellaneous Fee</span><strong id="misc">Rs. 1,000</strong></div></section>
-<div class="gt"><div class="l">GRAND TOTAL CHARGES</div><div class="v" id="grandTotal">Rs. 5,000</div></div>
-<p class="note">Note: This calculator uses the rates and fixed charges displayed above as sample settings. Actual taxes and government fees may vary according to current rules, property category, valuation and applicable notifications. Please verify before payment.</p>
+:root{--bg:#06170f;--sf:#0d2b1d;--sf2:#14402b;--bd:#1f5239;--tx:#eef8f1;--mu:#93b8a4;--ac:#35b8ef;--gd:#f4c95d;--pu:#c9946f}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{background:var(--bg);color-scheme:dark}
+body{font-family:Arial,Helvetica,sans-serif;font-size:15px;color:var(--tx);background:var(--bg);min-height:100vh;display:flex;flex-direction:column;padding:12px 12px 0}
+.ur{font-family:'Noto Nastaliq Urdu','Jameel Noori Nastaleeq',Arial,sans-serif;line-height:2}
+.card{background:var(--sf);border:1px solid var(--bd);border-radius:16px;padding:14px;margin-bottom:12px}
+.ch{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:6px}
+.ch b{font-size:12.5px;letter-spacing:.8px;text-transform:uppercase;color:var(--ac)}
+.ch .ur{font-size:14px;color:var(--mu)}
+.sell .ch b{color:#e0a46a}
+.amt{display:flex;align-items:center;height:60px;background:#082016;border:1.5px solid var(--bd);border-radius:14px}
+.amt:focus-within{border-color:var(--ac)}
+.amt i{font-style:normal;font-weight:700;color:var(--mu);padding-left:14px;font-size:15px}
+.amt input{flex:1;min-width:0;height:100%;background:none;border:0;outline:0;color:#fff;font-size:27px;font-weight:700;padding:0 14px 0 8px;font-family:Arial,sans-serif}
+.words{min-height:30px;margin-top:4px;text-align:right;direction:rtl;color:var(--gd);font-size:14px}
+.pr{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 0;border-top:1px solid var(--bd)}
+.ch+.pr{border-top:0}
+.pl{font-size:15px;font-weight:600}.pl .ur{font-size:13px;font-weight:400;color:var(--mu);margin-left:6px}
+.rt{font-size:12px;color:var(--mu);margin-top:1px}
+.st{display:flex;align-items:center;gap:4px;flex:none}
+.st button{width:46px;height:46px;border-radius:12px;border:1px solid var(--bd);background:var(--sf2);color:#fff;font-size:26px;line-height:1;font-family:Arial,sans-serif;touch-action:manipulation}
+.st button:active{background:#1c5a3b}
+.st output{min-width:38px;text-align:center;font-size:23px;font-weight:700}
+.gh{display:flex;justify-content:space-between;align-items:baseline;margin:2px 0 2px}
+.gh b{font-size:12.5px;letter-spacing:.8px;text-transform:uppercase;color:var(--ac)}
+.gh.s b{color:#e0a46a}.gh.g b{color:var(--gd)}
+.gh .ur{font-size:13px;color:var(--mu)}
+.br{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:9px 0;border-top:1px solid var(--bd)}
+.br small{display:block;font-size:12px;color:var(--mu);margin-top:2px}
+.bv{font-weight:600;white-space:nowrap}.bv.z{color:#5d7f6e;font-weight:400}
+.br.t{font-weight:700}.br.t .bv{color:var(--gd)}
+.sep{height:14px}
+details{margin-bottom:12px;background:var(--sf);border:1px solid var(--bd);border-radius:16px}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:14px;font-size:12.5px;letter-spacing:.8px;text-transform:uppercase;color:var(--mu);font-weight:700}
+summary::-webkit-details-marker{display:none}
+summary::after{content:'▾';font-size:15px}
+details[open] summary::after{content:'▴'}
+.rg{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 14px 6px}
+.rg label{display:block;font-size:12px;color:var(--mu);margin-bottom:4px}
+.rg input{width:100%;height:44px;border-radius:10px;border:1px solid var(--bd);background:#082016;color:#fff;font-size:16px;padding:0 10px;outline:0;font-family:Arial,sans-serif}
+.rg input:focus{border-color:var(--ac)}
+.rst{display:block;margin:8px 14px 14px;height:42px;width:calc(100% - 28px);border-radius:10px;border:1px solid var(--bd);background:var(--sf2);color:#fff;font-size:14px;font-weight:600}
+.note{font-size:11.5px;line-height:1.6;color:#6f9482;margin:0 4px 14px}
+.bar{position:sticky;bottom:0;margin:auto -12px 0;padding:10px 14px 12px;background:#0b3a26;border-top:1px solid #23724f;display:flex;align-items:center;gap:12px}
+.bar>div{flex:1;min-width:0}
+.bar .lb{font-size:11px;letter-spacing:1px;color:#a6d3b8;text-transform:uppercase}
+.bar .tv{font-size:25px;font-weight:700;white-space:nowrap}
+.bar .wd{font-size:12px;color:var(--gd);direction:rtl;text-align:right;min-height:0}
+.bar button{flex:none;height:46px;padding:0 18px;border:0;border-radius:12px;background:var(--ac);color:#03202e;font-weight:700;font-size:14px}
+.bar button:active{background:#6cd0ff}
+</style></head><body>
+
+<section class="card">
+  <div class="ch"><b>Property Value</b><span class="ur">جائیداد کی مالیت</span></div>
+  <div class="amt"><i>Rs.</i><input id="amount" type="text" inputmode="numeric" autocomplete="off" placeholder="0"></div>
+  <div class="words ur" id="words"></div>
+</section>
+
+<section class="card">
+  <div class="ch"><b>Buyer</b><span class="ur">خریدار</span></div>
+  <div class="pr"><div><div class="pl">Filer<span class="ur">فائلر</span></div><div class="rt" id="rtBf"></div></div>
+    <div class="st"><button type="button" data-k="bf" data-d="-1" aria-label="less">−</button><output id="buyerFiler">0</output><button type="button" data-k="bf" data-d="1" aria-label="more">+</button></div></div>
+  <div class="pr"><div><div class="pl">Non-Filer<span class="ur">نان فائلر</span></div><div class="rt" id="rtBn"></div></div>
+    <div class="st"><button type="button" data-k="bn" data-d="-1" aria-label="less">−</button><output id="buyerNon">0</output><button type="button" data-k="bn" data-d="1" aria-label="more">+</button></div></div>
+</section>
+
+<section class="card sell">
+  <div class="ch"><b>Seller</b><span class="ur">فروخت کنندہ</span></div>
+  <div class="pr"><div><div class="pl">Filer<span class="ur">فائلر</span></div><div class="rt" id="rtSf"></div></div>
+    <div class="st"><button type="button" data-k="sf" data-d="-1" aria-label="less">−</button><output id="sellerFiler">0</output><button type="button" data-k="sf" data-d="1" aria-label="more">+</button></div></div>
+  <div class="pr"><div><div class="pl">Non-Filer<span class="ur">نان فائلر</span></div><div class="rt" id="rtSn"></div></div>
+    <div class="st"><button type="button" data-k="sn" data-d="-1" aria-label="less">−</button><output id="sellerNon">0</output><button type="button" data-k="sn" data-d="1" aria-label="more">+</button></div></div>
+</section>
+
+<section class="card">
+  <div class="gh"><b>Buyer Advance Tax</b><span class="ur">خریدار ٹیکس</span></div>
+  <div class="br"><div>Filer<small id="dBf"></small></div><div class="bv" id="buyerFilerTax"></div></div>
+  <div class="br"><div>Non-Filer<small id="dBn"></small></div><div class="bv" id="buyerNonTax"></div></div>
+  <div class="br t"><div>Subtotal</div><div class="bv" id="subB"></div></div>
+  <div class="sep"></div>
+  <div class="gh s"><b>Seller Gain Tax</b><span class="ur">فروخت کنندہ ٹیکس</span></div>
+  <div class="br"><div>Filer<small id="dSf"></small></div><div class="bv" id="sellerFilerTax"></div></div>
+  <div class="br"><div>Non-Filer<small id="dSn"></small></div><div class="bv" id="sellerNonTax"></div></div>
+  <div class="br t"><div>Subtotal</div><div class="bv" id="subS"></div></div>
+  <div class="sep"></div>
+  <div class="gh g"><b>Govt Duties &amp; Charges</b><span class="ur">سرکاری فیس</span></div>
+  <div class="br"><div>Stamp Duty<small id="dSt"></small></div><div class="bv" id="stamp"></div></div>
+  <div class="br"><div>TMA Fee<small id="dTm"></small></div><div class="bv" id="tma"></div></div>
+  <div class="br"><div>PLRA Charges</div><div class="bv" id="plra"></div></div>
+  <div class="br"><div>Miscellaneous Fee</div><div class="bv" id="misc"></div></div>
+  <div class="br t"><div>Subtotal</div><div class="bv" id="subG"></div></div>
+</section>
+
+<details id="rates">
+  <summary>Rates &amp; Fixed Charges · ریٹس</summary>
+  <div class="rg">
+    <div><label for="rBf">Buyer Filer %</label><input id="rBf" type="number" inputmode="decimal" step="any" min="0"></div>
+    <div><label for="rBn">Buyer Non-Filer %</label><input id="rBn" type="number" inputmode="decimal" step="any" min="0"></div>
+    <div><label for="rSf">Seller Filer %</label><input id="rSf" type="number" inputmode="decimal" step="any" min="0"></div>
+    <div><label for="rSn">Seller Non-Filer %</label><input id="rSn" type="number" inputmode="decimal" step="any" min="0"></div>
+    <div><label for="rSt">Stamp Duty %</label><input id="rSt" type="number" inputmode="decimal" step="any" min="0"></div>
+    <div><label for="rTm">TMA Fee %</label><input id="rTm" type="number" inputmode="decimal" step="any" min="0"></div>
+    <div><label for="rPl">PLRA Charges (Rs.)</label><input id="rPl" type="number" inputmode="decimal" step="any" min="0"></div>
+    <div><label for="rMi">Misc Fee (Rs.)</label><input id="rMi" type="number" inputmode="decimal" step="any" min="0"></div>
+  </div>
+  <button class="rst" id="rstRates" type="button">↺ Reset to default rates</button>
+</details>
+
+<p class="note">Note: Rates and fixed charges are sample settings and can be changed above. Actual taxes and government fees may vary with current notifications, property category and valuation. Please verify before payment.</p>
+
+<div class="bar">
+  <div><div class="lb">Grand Total</div><div class="tv" id="grandTotal">Rs. 0</div><div class="wd ur" id="gwords"></div></div>
+  <button type="button" id="copy">Copy</button>
 </div>
+
 <script>
-const $ = id => document.getElementById(id);
-const money = n => 'Rs. ' + Math.round(n).toLocaleString('en-PK');
-const num = id => Math.max(0, Number($(id).value) || 0);
-function calculate(){
-  const amount=num('amount');
-  const bf=num('buyerFiler'), bn=num('buyerNon'), sf=num('sellerFiler'), sn=num('sellerNon');
-  const buyerFiler=amount*0.013*bf, buyerNon=amount*0.105*bn;
-  const sellerFiler=amount*0.028*sf, sellerNon=amount*0.115*sn;
-  const stamp=amount*0.01, tma=amount*0.01, plra=3600, misc=1000;
-  $('buyerFilerTax').textContent=money(buyerFiler);
-  $('buyerNonTax').textContent=money(buyerNon);
-  $('sellerFilerTax').textContent=money(sellerFiler);
-  $('sellerNonTax').textContent=money(sellerNon);
-  $('stamp').textContent=money(stamp);
-  $('tma').textContent=money(tma);
-  $('plra').textContent=money(plra);
-  $('misc').textContent=money(misc);
-  $('grandTotal').textContent=money(buyerFiler+buyerNon+sellerFiler+sellerNon+stamp+tma+plra+misc);
+(function(){
+var D={bf:1.3,bn:10.5,sf:2.75,sn:11.5,st:1,tm:1,pl:3600,mi:1000};
+var R={},C={bf:0,bn:0,sf:0,sn:0},KEY='inteqalRates.v2';
+function reset(){for(var k in D)R[k]=D[k]}
+reset();
+try{var sv=JSON.parse(localStorage.getItem(KEY)||'null');if(sv)for(var k in D)if(typeof sv[k]==='number'&&sv[k]>=0)R[k]=sv[k]}catch(e){}
+var $=function(i){return document.getElementById(i)};
+var amountEl=$('amount');
+function fmt(n){return Math.round(n).toLocaleString('en-IN')}
+function money(n){return 'Rs. '+fmt(n)}
+function pct(p){return String(+p.toFixed(3))+'%'}
+function amt(){return Number(amountEl.value.replace(/\D/g,''))||0}
+function words(n){n=Math.round(n);if(!n)return '';var P=[[1e9,'ارب'],[1e7,'کروڑ'],[1e5,'لاکھ'],[1e3,'ہزار']],o=[];P.forEach(function(x){var q=Math.floor(n/x[0]);if(q){o.push(q+' '+x[1]);n-=q*x[0]}});if(n)o.push(n);return o.join(' ')+' روپے'}
+function set(id,v){var e=$(id);if(e.textContent!==v)e.textContent=v}
+function cell(id,v){var e=$(id);set(id,v?money(v):'—');e.className=v?'bv':'bv z'}
+var T={};
+function calc(){
+  var a=amt();
+  var bf=a*R.bf/100*C.bf,bn=a*R.bn/100*C.bn,sf=a*R.sf/100*C.sf,sn=a*R.sn/100*C.sn;
+  var st=a*R.st/100,tm=a*R.tm/100,pl=R.pl,mi=R.mi;
+  var B=bf+bn,S=sf+sn,G=st+tm+pl+mi,tot=B+S+G;
+  set('words',words(a));
+  set('rtBf',pct(R.bf)+' of value × person');set('rtBn',pct(R.bn)+' of value × person');
+  set('rtSf',pct(R.sf)+' of value × person');set('rtSn',pct(R.sn)+' of value × person');
+  set('dBf',pct(R.bf)+' × '+C.bf);set('dBn',pct(R.bn)+' × '+C.bn);
+  set('dSf',pct(R.sf)+' × '+C.sf);set('dSn',pct(R.sn)+' × '+C.sn);
+  set('dSt',pct(R.st)+' of value');set('dTm',pct(R.tm)+' of value');
+  cell('buyerFilerTax',bf);cell('buyerNonTax',bn);cell('sellerFilerTax',sf);cell('sellerNonTax',sn);
+  cell('stamp',st);cell('tma',tm);cell('plra',pl);cell('misc',mi);
+  cell('subB',B);cell('subS',S);cell('subG',G);
+  set('grandTotal',money(tot));set('gwords',words(tot));
+  ['buyerFiler:bf','buyerNon:bn','sellerFiler:sf','sellerNon:sn'].forEach(function(p){p=p.split(':');set(p[0],String(C[p[1]]))});
+  T={a:a,bf:bf,bn:bn,sf:sf,sn:sn,st:st,tm:tm,pl:pl,mi:mi,tot:tot};
 }
-document.querySelectorAll('input').forEach(el=>el.addEventListener('input',calculate));
-calculate();
+/* amount: live thousands separators */
+amountEl.addEventListener('input',function(){
+  var d=amountEl.value.replace(/\D/g,'').replace(/^0+(?=\d)/,'');
+  var f=d?Number(d).toLocaleString('en-IN'):'';
+  if(amountEl.value!==f)amountEl.value=f;
+  calc();
+});
+/* steppers */
+document.addEventListener('click',function(e){
+  var b=e.target.closest&&e.target.closest('.st button');if(!b)return;
+  var k=b.getAttribute('data-k'),v=C[k]+Number(b.getAttribute('data-d'));
+  C[k]=Math.max(0,Math.min(99,v));calc();
+});
+/* editable rates */
+var RM={rBf:'bf',rBn:'bn',rSf:'sf',rSn:'sn',rSt:'st',rTm:'tm',rPl:'pl',rMi:'mi'};
+function fillRates(){for(var id in RM)$(id).value=R[RM[id]]}
+function saveRates(){try{localStorage.setItem(KEY,JSON.stringify(R))}catch(e){}}
+for(var id in RM)(function(id){$(id).addEventListener('input',function(){var v=parseFloat($(id).value);R[RM[id]]=(v>=0)?v:0;saveRates();calc()})})(id);
+$('rstRates').addEventListener('click',function(){reset();try{localStorage.removeItem(KEY)}catch(e){}fillRates();calc()});
+/* copy summary */
+$('copy').addEventListener('click',function(){
+  calc();var t=T;
+  var L=['Inteqal Fee Estimate','Property Value: '+money(t.a)+(t.a?' ('+words(t.a)+')':''),
+   'Buyer: Filer '+C.bf+', Non-Filer '+C.bn,'Seller: Filer '+C.sf+', Non-Filer '+C.sn,'',
+   'Buyer Advance Tax: '+money(t.bf+t.bn),'Seller Gain Tax: '+money(t.sf+t.sn),
+   'Stamp Duty: '+money(t.st),'TMA Fee: '+money(t.tm),'PLRA Charges: '+money(t.pl),'Misc Fee: '+money(t.mi),'',
+   'GRAND TOTAL: '+money(t.tot)].join('\n');
+  var b=$('copy');
+  function ok(){b.textContent='✔ Copied';setTimeout(function(){b.textContent='Copy'},1400)}
+  function fb(){var x=document.createElement('textarea');x.value=L;x.style.position='fixed';x.style.opacity='0';document.body.appendChild(x);x.select();try{document.execCommand('copy');ok()}catch(e){}x.remove()}
+  try{navigator.clipboard.writeText(L).then(ok,fb)}catch(e){fb()}
+});
+fillRates();calc();
+})();
 <\/script></body></html>
 </script>
 
@@ -3823,6 +3936,7 @@ calculate();
     }
   }
 var PERF='@media screen{tbody tr{contain:layout paint style}}';
+  var PERF_LC='html body #lcOv .lc-ft{flex-wrap:wrap!important}html body #lcOv .lc-ft #lcIn{flex:1 1 100%!important;order:-1;height:46px!important;border:0!important;color:#fff!important;font-size:14px!important;background:linear-gradient(135deg,#35b8ef,#24508d)!important;box-shadow:0 8px 18px -8px #35b8ef!important}';
   var PERF_INST='body,.header,.section-h,.deed,.top,#sq,#chips,tbody tr{animation:none!important}';
   function build(k){
     if(frames[k]) return frames[k];
@@ -3839,10 +3953,10 @@ var PERF='@media screen{tbody tr{contain:layout paint style}}';
           'input:focus,select:focus{box-shadow:0 0 0 3px rgba(45,158,90,.3)!important;transition:box-shadow .3s}'+
           '@keyframes pgIn{from{opacity:0}}@keyframes pgDrop{from{opacity:0;transform:translateY(-22px)}}@keyframes pgUp{from{opacity:0;transform:translateY(18px)}}'+
           '@media(prefers-reduced-motion:reduce){*{animation:none!important}}';
-        st.textContent+=(k==='inteqal'?'':THEME)+(CARDS[k]||'');initPg(k,d);
+        if(k==='inteqal'){st.textContent='html{scroll-behavior:auto!important;overscroll-behavior:contain;touch-action:manipulation}';}else{st.textContent+=THEME+(CARDS[k]||'');initPg(k,d);}
         d.head.appendChild(st);
         var fl=d.createElement('link');fl.rel='stylesheet';fl.href='vendor/fonts/fonts.css';d.head.appendChild(fl);
-        var pf=d.createElement('style');pf.textContent=PERF+((k==='rural'||k==='urban')?PERF_INST:'');d.head.appendChild(pf);
+        var pf=d.createElement('style');pf.textContent=PERF+((k==='rural'||k==='urban')?PERF_INST+PERF_LC:'');d.head.appendChild(pf);
       }catch(e){}
     });
     wf.appendChild(f); return (frames[k]=f);
@@ -3860,7 +3974,8 @@ var PERF='@media screen{tbody tr{contain:layout paint style}}';
     $('.wt').textContent=TITLES[k];
     for(var x in frames) frames[x].classList.toggle('on',x===k);
     var was=cur; cur=k;
-    if(first&&(k==='rural'||k==='urban')){
+    if(k==='inteqal'&&pendingAmt!=null&&!applyAmt()){ var fi=frames.inteqal; fi.addEventListener('load',applyAmt); setTimeout(applyAmt,400); setTimeout(applyAmt,1200); }
+    if(first&&(k==='rural'||k==='urban'||k==='inteqal')){
       win._inst=1; win.classList.add('vis','open','ready','full'); win.classList.remove('nt'); root.classList.add('lock','lk2','inst'); return;
     }
     if(first){
@@ -3880,6 +3995,20 @@ var PERF='@media screen{tbody tr{contain:layout paint style}}';
     win.classList.remove('open','ready'); root.classList.remove('lock');
     setTimeout(function(){ if(!cur) win.classList.remove('vis'); },700);
   }
+  var pendingAmt=null;
+  function applyAmt(){
+    if(pendingAmt==null) return true;
+    var f=frames.inteqal; if(!f) return false;
+    try{
+      var d=f.contentDocument,a=d&&d.getElementById('amount');
+      if(a){ a.value=pendingAmt; a.dispatchEvent(new d.defaultView.Event('input',{bubbles:true})); try{d.defaultView.scrollTo(0,0)}catch(e){} pendingAmt=null; return true; }
+    }catch(e){}
+    return false;
+  }
+  window.addEventListener('message',function(e){
+    var m=e.data; if(!m||typeof m.inteqalAmt!=='number') return;
+    pendingAmt=m.inteqalAmt; byClick=true; location.hash='doc-inteqal';
+  });
   function route(){ var m=location.hash.match(/^#doc-(\w+)$/); if(m&&TITLES[m[1]]) show(m[1]); else hide(); }
   function goHome(){
     if(!cur) return; hap();
